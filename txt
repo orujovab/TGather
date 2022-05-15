@@ -1,55 +1,100 @@
-2
-num = input('Input a number:') 
-total = 0 
-while num != '': 
-    try: 
-        num = int(num) 
-        total = total + num 
-        print('Current sum:', total) 
-    except: 
-        print('You should enter an integer.') 
-    num = input('Input a number: ') 
-print('Total sum:', total)
+1
+print('Sözlərin uzunluqları:', list(map(len, input('Sözləri boşluqlarla ayıraraq bir sətirdə  daxil edin:').split())))
 
+
+
+2
+print(list(map(lambda x: int(x)*2, input('Ədədləri daxil edin').split())))
 
 
 
 3
-try: 
-    a = int(input('Enter a dividend:')) 
-    b = int(input('Enter a divisor:')) 
-    print(f'{a} : {b} = {round(a/b, 2)}') 
-except ValueError: 
-    print('It is not an integer!') 
-except ZeroDivisionError: 
-    print('You can not divide by zero!')
-    
+print(list(map(lambda x: 1 if int(x)%2==0 else -1, input('Ədədləri daxil edin').split())))
+
+
+
 4
-def check_number(num): 
-    try: 
-        return float(num) 
-    except: 
-        return 'Not a number' 
-  
-data = input('Enter a series of numbers separated by a space:').split() 
-new_data = [] 
-for num in data: 
-    new_data.append(check_number(num)) 
-print('Amount of numbers:', len(new_data) - new_data.count('Not a number')) 
-print('Amount of non-numeric values:', new_data.count('Not a number'))
+print(list(map(lambda x: 1 if int(x)%2==0 else 0, input('Ədədləri daxil edin').split())).count(1))
 
 
 
 5
-data = {} 
-for item in input('Enter a list of destinations separated by a space:').split(): 
-    data[item] = 0 
-while input('Do you want to buy a tour (1 - yes, 0 - no)?') != '0': 
-    try: 
-        data[input('Enter your desired destination:')] += int(input('How many tickets do you want?')) 
-    except KeyError: 
-        print('This destination is not available.') 
-    except ValueError: 
-        print('Incorrect data about the number of tickets.') 
-for item in data: 
-    print(f'Destination - {item}, number of orders - {data[item]}.')
+print(list(map(lambda x: 1 if x[0].lower() in 'aeiou' else 0, input('Sözləri daxil edin').split())).count(1))
+
+
+
+
+
+
+
+
+
+
+1
+def mean(data): 
+    result = 0 
+    for item in data: 
+        result += item 
+    return round(result/len(data), 2) 
+  
+def std(data): 
+    mean_ = mean(data) 
+    result = 0 
+    for item in data: 
+        result += (item - mean_) ** 2 
+    return round((result/len(data)) ** 0.5, 2) 
+  
+def removeOutliers(data, num_std): 
+    mean_ = mean(data) 
+    std_ = std(data) 
+    mn = mean_ - (std_ * num_std) 
+    mx = mean_ + (std_ * num_std) 
+    print(mean_, std_, mn, mx) 
+    new_data = [] 
+    for item in data: 
+        if mn <= item <= mx: 
+            new_data.append(item) 
+    return new_data 
+  
+str_data = input('Ədədlər ardıcıllığını boşluqlarla ayıraraq bir sətirdə daxil edin').split() 
+data = [] 
+for item in str_data: 
+    data.append(int(item)) 
+  
+num_std = int(input('Seçməyə neçə standart sapma daxil edilsin?')) 
+print(removeOutliers(data, num_std))
+
+
+
+
+2
+
+extensions = { 
+    'document': ['pdf', 'txt', 'doc', 'docx', 'rtf', 'tex', 'wpd', 'odt'], 
+    'presentation': ['pptx', 'ppt', 'pps', 'key', 'odp'], 
+    'spreadsheet': ['xlsx', 'xls', 'xlsm', 'ods'], 
+    'video': ['mp4', 'mov', 'avi', 'mkv', 'wmv', '3gp', '3g2', 'mpg', 'mpeg', 'm4v', 'h264', 'flv', 
+              'rm', 'swf', 'vob'], 
+    'image': ['jpg', 'png', 'gif', 'bmp', 'ai', 'psd', 'ico', 'jpeg', 'ps', 'svg', 'tif', 'tiff'], 
+    'data': ['sql', 'sqlite', 'sqlite3', 'csv', 'dat', 'db', 'log', 'mdb', 'sav', 'tar', 'xml'], 
+    'audio': ['mp3', 'wav', 'ogg', 'flac', 'aif', 'mid', 'midi', 'mpa', 'wma', 'wpl', 'cda'], 
+    'archive': ['zip', 'rar', '7z', 'z', 'gz', 'rpm', 'arj', 'pkg', 'deb'], 
+    'font': ['otf', 'ttf', 'fon', 'fnt'], 
+    'program': ['exe', 'bat', 'apk'] 
+} 
+  
+def file_type_detect(filename): 
+    file_extension = filename.split('.')[-1] 
+    file_type_return = '' 
+    for file_type in extensions: 
+        for i in range(len(extensions[file_type])): 
+            if extensions[file_type][i] == file_extension: 
+                file_type_return = file_type 
+    return file_type_return 
+  
+search_file_type = input('Faylın adını daxil edin:') 
+file_type = file_type_detect(search_file_type) 
+if file_type: 
+    print('Fayl', file_type, 'növünə aiddir') 
+else: 
+    print('Naməlum fayl formatı')
