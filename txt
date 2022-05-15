@@ -1,11 +1,15 @@
-start_price = int(input('İlkin qiyməti daxil edin')) 
-first_percent = int(input('Birinci ildə qiymət neçə faiz artıb?')) 
-second_percent = int(input('İkinci ildə qiymət neçə faiz artıb?')) 
+def histogram(string): 
+  sym_dict = dict() 
+  for sym in string: 
+    if sym in sym_dict: 
+      sym_dict[sym] += 1 
+    else: 
+      sym_dict[sym] = 1 
   
-new_price = get_higher_price(start_price, first_percent) 
-new_price = get_higher_price(new_price, second_percent) 
-print('Yekun qiymət:', new_price) 
- 
- 
-def get_higher_price(price, percent): 
-    return round(price * (1 + percent / 100), 2)
+  return sym_dict 
+  
+text = input('Mətni daxil edin: ').lower() 
+hist = histogram(text) 
+  
+for i_sym in sorted(hist.keys()): 
+  print(i_sym, ':', hist[i_sym])
