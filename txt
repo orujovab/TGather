@@ -1,20 +1,11 @@
-def check(word1, word2):
-    if len(word1) != len(word2):
-        return False
-    else:
-        differences = 0
-        for i in range(len(word1)):
-            if word1[i] != word2[i]:
-                differences += 1
-    if differences > 1:
-        return False
-    else:
+def isInteger(s):
+    for ch in s:
+        if not ch in '1234567890':
+            return False
         return True
 
-word1 = input('İlk sözü daxil edin')
-word2 = input('İkinci sözü daxil edin')
-
-if check (word1, word2):
-    print('Sözlər oxşardır')
+s = input('Sətri daxil edin:')
+if isInteger(s):
+    print('Sətir tam ədəddir.')
 else:
-    print('Sözlər fərqlidir')
+    print('Sətir tam ədəd deyil.')
