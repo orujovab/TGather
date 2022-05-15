@@ -9,3 +9,76 @@ if isInteger(s):
     print('Sətir tam ədəddir.')
 else:
     print('Sətir tam ədəd deyil.')
+    
+    
+    
+    
+    
+    
+    
+    10
+def checkPassword(password): 
+    has_upper = False 
+    has_lower = False 
+    has_num = False 
+    
+    for ch in password: 
+        if ch >= 'A' and ch <= 'Z': 
+            has_upper = True 
+        elif ch >= 'a' and ch <= 'z': 
+            has_lower = True 
+        elif ch >= '0' and ch <= '9': 
+            has_num = True 
+    
+    if len(password) >= 8 and has_upper and has_lower and has_num: 
+        return True 
+    return False 
+  
+p=input('Şifrəni daxil edin: ') 
+if checkPassword(p): 
+    print('Şifrə etibarlıdır.') 
+else: 
+    print('Şifrə etibarsızdır.')
+    
+    
+    11
+def countRange(data, mn, mx): 
+    count = 0 
+    for e in data: 
+        if mn <= e and e < mx: 
+            count = count + 1 
+    return count 
+  
+str_data = input('Ədədlər ardıcıllığını boşluqlarla ayıraraq bir sətirdə daxil edin').split() 
+data = [] 
+for item in str_data: 
+    data.append(int(item)) 
+mn = int(input('Aşağı həddi daxil edin')) 
+mx = int(input('Yuxarı həddi daxil edin')) 
+print(f'{mn} ilə {mx} arasında elementlərin sayı: {countRange(data, mn, mx)}')
+
+
+
+12
+def tokenList(s): 
+    s = s.replace(' ', '') 
+    tokens = [] 
+    i = 0 
+    while i < len(s): 
+        if s[i] == '*' or s[i] == '/' or s[i] == '=' or s[i] == '+' or s[i] == '-': 
+            tokens.append(s[i]) 
+            i = i + 1 
+        else: 
+            num = 0 
+            while i < len(s) and s[i] >= '0' and s[i] <= '9': 
+                num = num*10 + int(s[i]) 
+                i = i + 1 
+            tokens.append(num) 
+    return tokens 
+  
+exp = input('Müsbət tam ədədlərdən, hesab operatorlarından (+, –, *, /) və "=" işarəsindən ibarət olan riyazi ifadəni daxil edin): ') 
+print(tokenList(exp))
+    
+    
+    
+
