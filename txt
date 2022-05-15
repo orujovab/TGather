@@ -1,0 +1,11 @@
+start_price = int(input('İlkin qiyməti daxil edin')) 
+first_percent = int(input('Birinci ildə qiymət neçə faiz artıb?')) 
+second_percent = int(input('İkinci ildə qiymət neçə faiz artıb?')) 
+  
+new_price = get_higher_price(start_price, first_percent) 
+new_price = get_higher_price(new_price, second_percent) 
+print('Yekun qiymət:', new_price) 
+ 
+ 
+def get_higher_price(price, percent): 
+    return round(price * (1 + percent / 100), 2)
