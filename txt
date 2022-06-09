@@ -1,82 +1,111 @@
-exceptions = []
-while input('Ünvanı istisnalara əlavə etmək istəyirsiniz (1 — bəli, 0 — xeyr)?') != '0':
-    address = input('Ünvanı daxil edin:')
-    if address in exceptions:
-        print('Ünvan artıq siyahıya daxil edilib')
-    else:
-        exceptions.append(address)
-print(f'Siyahıdakı istisnaların sayı: {len(exceptions)}')
-
-
-
-
-tasks = input('Variant nömrələrini boşluqla ayıraraq bir sətirdə daxil edin:').split()
-tasks = list(map(int, tasks))
-for i in range(len(tasks)):
-    if tasks[i] > 99:
-        tasks[i] = tasks[i] % 100
-print(tasks)
-
-
-
-
-
-while True:
-    grats_template = input('Təbrik şablonunu daxil edin')
-    if '{name}' in grats_template:
-        break
-    print('Xəta: {name} konstruksiyası yoxdur.')
- 
-names_list = input('Adların siyahısını boşluqla ayıraraq bir sətirdə daxil edin:') 
-names_list = names_list.split()
- 
-for name in names_list:
-    print(grats_template.replace('{name}', name))
-    
-    
-    
-    
- models = ['Xiaomi Redmi Note 8 Pro', 'Xiaomi Redmi Note 8T',
-           'Apple iPhone Xr', 'Apple iPhone SE', 'OnePlus 8 Pro',
-           'Samsung Galaxy A71', 'Xiaomi Poco X3 NFC',
-           'Xiaomi Redmi 9', 'Xiaomi Redmi 9A', 'Apple iPhone 11',
-           'Apple iPhone 11 Pro', 'Samsung Galaxy S10',
-           'HUAWEI P40', 'HUAWEI P40 Pro', 'Samsung Galaxy A51',
-           'Xiaomi Mi 10', 'Xiaomi Redmi Note', 'ASUS Rog Phone 3',
-           'Apple iPhone 11 Pro Max', 'Samsung Galaxy A10']
- 
-model = input('Sizi hansı istehsalçının modeli maraqlandırır?').lower()
-suggest = []
-for item in models:
-    if model in item.lower().split():
-        suggest.append(item)
-if len(suggest) == 0:
-    print('Bu istehsalçının telefonları tapılmadı.')
+app_dict = {
+    'Bob': 33,
+    'Mike': 45,
+    'Linda': 40
+}
+name = input('İstifadəçinin adını daxil edin:')
+if name in app_dict:
+    print(f'Quraşdırılmış tətbiqlərin sayı: {app_dict[name]}.')
 else:
-    print('Bu modelləri nəzərdən keçirməyi tövsiyə edirik:')
-    for item in suggest:
-        print(item)
-        
-        
-        
-        
-        
-        
-        
-        
-        
-numb = int(input('Siyahıdakı elementlərin sayını daxil edin:'))
-lst = list()
-summ = 0
-even, odd = 0, 0
-for i in range(numb):
-    lst.append(int(input('Ədədi daxil edin:')))
-    summ += lst[i]
-    if lst[i]%2 == 0:
-        even += 1
-    else:
-        odd += 1
-if summ%2 == 0:
-    print('Siyahıdakı tək elementlərin sayı:', odd)
+    print('İstifadəçi tapılmadı.')
+    
+    
+    
+    
+    
+names = input('Tələbələrin adını boşluqla ayıraraq bir sətirdə daxil edin:').split()
+languages = input('Proqramlaşdırma dillərini boşluqla ayıraraq bir sətirdə daxil edin:').split()
+data = {}
+for i in range(len(names)):
+    data[names[i]] = languages[i]
+name = input('Tələbənin adını daxil edin:')
+if name in data:
+    print(f'Tələbə: {name}. Proqramlaşdırma dili: {data[name]}.')
 else:
-    print('Siyahıdakı cüt elementlərin sayı:', even)
+    print('Məlumatlar tapılmadı.')
+    
+    
+    
+    
+    
+    
+    
+students = {}
+data = input('Tələbənin məlumatlarını (adı və qiymətləri) boşluqla ayıraraq bir sətirdə daxil edin (0 — stop)')
+while data != '0':
+    data = data.split()
+    students[data[0]] = list(map(int, data[1:]))
+    data = input('Tələbənin məlumatlarını (adı və qiymətləri) boşluqla ayıraraq bir sətirdə daxil edin (0 — stop)')
+name = input('Tələbənin adını daxil edin:')
+mean = 0
+for grade in students[name]:
+    mean += grade
+mean = round(mean/len(students[name]), 2)
+print(f'Tələbə: {name}. Orta bal: {mean}.')
+
+
+
+
+
+
+
+
+
+players = [
+    {'name': 'Aziz', 'team': 'A', 'status': 'Rest'},
+    {'name': 'Gulnara', 'team': 'B', 'status': 'Training'},
+    {'name': 'Ramiz', 'team': 'C', 'status': 'Travel'},
+    {'name': 'Zaur', 'team': 'C', 'status': 'Rest'},
+    {'name': 'Vahid', 'team': 'A', 'status': 'Training'},
+    {'name': 'Firuza', 'team': 'A', 'status': 'Rest'},
+    {'name': 'Eldar', 'team': 'B', 'status': 'Rest'},
+    {'name': 'Leyla', 'team': 'C', 'status': 'Travel'}
+]
+ 
+team = input('Əmrin adını daxil edin:')
+status = input('Statusu daxil edin:')
+names = []
+for player in players:
+    if player['team'] == team and player['status'] == status:
+        names.append(player['name'])
+names.sort()
+for name in names:
+    print(name)
+
+
+
+
+
+
+
+
+
+data = [
+       {'id': 10, 'user': 'Bob'},
+       {'id': 11, 'user': 'Mark'},
+       {'id': 12, 'user': 'Antony'},
+       {'id': 10, 'user': 'Rob'},
+       {'id': 11, 'user': 'Farid'},
+       {'id': 11, 'user': 'Adil'},
+       {'id': 10, 'user': 'Mark'},
+       {'id': 12, 'user': 'Emil'}
+]
+ 
+new_data = {}
+for user in data:
+    if user['id'] in new_data:
+        new_data[user['id']].append(user['user'])
+    else:
+        new_data[user['id']] = [user['user']]
+ 
+user = input('Hansı istifadəçini əsas təyin edirik (1 — birinci, 2 — sonuncu)?')
+if user == '1':
+    index = 0
+else:
+    index = -1
+ 
+for item in new_data:
+    new_data[item] = new_data[item][index]
+ 
+user_id = int(input('ID-ni daxil edin:'))
+print(f'Bu ID üçün əsas istifadəçi: {new_data[user_id]}')
