@@ -1,100 +1,83 @@
-1
-print('Sözlərin uzunluqları:', list(map(len, input('Sözləri boşluqlarla ayıraraq bir sətirdə  daxil edin:').split())))
+user = input('İstifadəçini daxil edin: ')
+filename = input('Faylın adını daxil edin: ')
+print(f'C:/{user}/docs/folder/{filename}.txt')
 
 
 
-2
-print(list(map(lambda x: int(x)*2, input('Ədədləri daxil edin').split())))
-
-
-
-3
-print(list(map(lambda x: 1 if int(x)%2==0 else -1, input('Ədədləri daxil edin').split())))
-
-
-
-4
-print(list(map(lambda x: 1 if int(x)%2==0 else 0, input('Ədədləri daxil edin').split())).count(1))
-
-
-
-5
-print(list(map(lambda x: 1 if x[0].lower() in 'aeiou' else 0, input('Sözləri daxil edin').split())).count(1))
+a = input('İfadəni daxil edin: ')
+print(a[0])
+print(a[-1])
+print(a[0:4])
+print(a[4:])
+print(a[0::2])
+print(a[1::2])
+print(a[::-1])
 
 
 
 
+a = input('Sözü daxil edin: ')
+b = int(input('Əvəz etmək üçün simvolun nörəsi: '))
+c = input('Nə ilə əvəz edilməlidir: ')
+print(a.replace(a[b-1],c))
 
 
 
 
 
-
-1
-def mean(data): 
-    result = 0 
-    for item in data: 
-        result += item 
-    return round(result/len(data), 2) 
-  
-def std(data): 
-    mean_ = mean(data) 
-    result = 0 
-    for item in data: 
-        result += (item - mean_) ** 2 
-    return round((result/len(data)) ** 0.5, 2) 
-  
-def removeOutliers(data, num_std): 
-    mean_ = mean(data) 
-    std_ = std(data) 
-    mn = mean_ - (std_ * num_std) 
-    mx = mean_ + (std_ * num_std) 
-    print(mean_, std_, mn, mx) 
-    new_data = [] 
-    for item in data: 
-        if mn <= item <= mx: 
-            new_data.append(item) 
-    return new_data 
-  
-str_data = input('Ədədlər ardıcıllığını boşluqlarla ayıraraq bir sətirdə daxil edin').split() 
-data = [] 
-for item in str_data: 
-    data.append(int(item)) 
-  
-num_std = int(input('Seçməyə neçə standart sapma daxil edilsin?')) 
-print(removeOutliers(data, num_std))
+words = input('Bir neçə sözdən ibarət ifadəni daxil edin:')
+hashtags = "#"
+for i in words:
+      if i== ' ':
+          hashtags += ' #'
+      else:
+          hashtags += i
+print(hashtags)
 
 
 
 
-2
 
-extensions = { 
-    'document': ['pdf', 'txt', 'doc', 'docx', 'rtf', 'tex', 'wpd', 'odt'], 
-    'presentation': ['pptx', 'ppt', 'pps', 'key', 'odp'], 
-    'spreadsheet': ['xlsx', 'xls', 'xlsm', 'ods'], 
-    'video': ['mp4', 'mov', 'avi', 'mkv', 'wmv', '3gp', '3g2', 'mpg', 'mpeg', 'm4v', 'h264', 'flv', 
-              'rm', 'swf', 'vob'], 
-    'image': ['jpg', 'png', 'gif', 'bmp', 'ai', 'psd', 'ico', 'jpeg', 'ps', 'svg', 'tif', 'tiff'], 
-    'data': ['sql', 'sqlite', 'sqlite3', 'csv', 'dat', 'db', 'log', 'mdb', 'sav', 'tar', 'xml'], 
-    'audio': ['mp3', 'wav', 'ogg', 'flac', 'aif', 'mid', 'midi', 'mpa', 'wma', 'wpl', 'cda'], 
-    'archive': ['zip', 'rar', '7z', 'z', 'gz', 'rpm', 'arj', 'pkg', 'deb'], 
-    'font': ['otf', 'ttf', 'fon', 'fnt'], 
-    'program': ['exe', 'bat', 'apk'] 
-} 
-  
-def file_type_detect(filename): 
-    file_extension = filename.split('.')[-1] 
-    file_type_return = '' 
-    for file_type in extensions: 
-        for i in range(len(extensions[file_type])): 
-            if extensions[file_type][i] == file_extension: 
-                file_type_return = file_type 
-    return file_type_return 
-  
-search_file_type = input('Faylın adını daxil edin:') 
-file_type = file_type_detect(search_file_type) 
-if file_type: 
-    print('Fayl', file_type, 'növünə aiddir') 
-else: 
-    print('Naməlum fayl formatı')
+
+string = input("İngilis dilində ifadə və ya söz yazın:")
+vowels = "aeiou"
+vowel = 0
+for i in string.lower():
+  if i in vowels:
+    vowel = vowel + 1
+print(f"Sətirdəki saitlərin sayı: {vowel}")
+
+
+
+
+
+
+
+
+
+
+string = input('Mətni daxil edin:')
+vowels = 'aeiou'
+for vowel in vowels:
+    num = string.count(vowel)
+    print(f"Hərflərin sayı '{vowel}': {num}")
+    
+    
+    
+    
+    
+task = input('Hərflərin ardıcıllığını daxil edin:').lower()
+phrase = input(f'Sözləri "{task}" hərfləri ilə başlayan ifadəni daxil edin.').lower()
+done = True
+for letter in task:
+    if phrase[0] != letter:
+        done = False
+        break
+    phrase = phrase[phrase.find(' ')+1:]
+if done == True:
+    print('Tapşırıq yerinə yetirildi!')
+else:
+    print('Tapşırıq yerinə yetirilə bilinmədi.')    
+    
+    
+    
