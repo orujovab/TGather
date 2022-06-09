@@ -1,111 +1,38 @@
-app_dict = {
-    'Bob': 33,
-    'Mike': 45,
-    'Linda': 40
-}
-name = input('İstifadəçinin adını daxil edin:')
-if name in app_dict:
-    print(f'Quraşdırılmış tətbiqlərin sayı: {app_dict[name]}.')
-else:
-    print('İstifadəçi tapılmadı.')
-    
-    
-    
-    
-    
-names = input('Tələbələrin adını boşluqla ayıraraq bir sətirdə daxil edin:').split()
-languages = input('Proqramlaşdırma dillərini boşluqla ayıraraq bir sətirdə daxil edin:').split()
-data = {}
-for i in range(len(names)):
-    data[names[i]] = languages[i]
-name = input('Tələbənin adını daxil edin:')
-if name in data:
-    print(f'Tələbə: {name}. Proqramlaşdırma dili: {data[name]}.')
-else:
-    print('Məlumatlar tapılmadı.')
-    
-    
-    
-    
-    
-    
-    
-students = {}
-data = input('Tələbənin məlumatlarını (adı və qiymətləri) boşluqla ayıraraq bir sətirdə daxil edin (0 — stop)')
-while data != '0':
-    data = data.split()
-    students[data[0]] = list(map(int, data[1:]))
-    data = input('Tələbənin məlumatlarını (adı və qiymətləri) boşluqla ayıraraq bir sətirdə daxil edin (0 — stop)')
-name = input('Tələbənin adını daxil edin:')
-mean = 0
-for grade in students[name]:
-    mean += grade
-mean = round(mean/len(students[name]), 2)
-print(f'Tələbə: {name}. Orta bal: {mean}.')
+Cut pprogram
 
 
-
-
-
-
-
-
-
-players = [
-    {'name': 'Aziz', 'team': 'A', 'status': 'Rest'},
-    {'name': 'Gulnara', 'team': 'B', 'status': 'Training'},
-    {'name': 'Ramiz', 'team': 'C', 'status': 'Travel'},
-    {'name': 'Zaur', 'team': 'C', 'status': 'Rest'},
-    {'name': 'Vahid', 'team': 'A', 'status': 'Training'},
-    {'name': 'Firuza', 'team': 'A', 'status': 'Rest'},
-    {'name': 'Eldar', 'team': 'B', 'status': 'Rest'},
-    {'name': 'Leyla', 'team': 'C', 'status': 'Travel'}
-]
+goods = {'Windows': 400.5,
+         'Ubuntu': 0,
+         'iOS': 100.0,
+         'Red Hat': 300.8}
  
-team = input('Əmrin adını daxil edin:')
-status = input('Statusu daxil edin:')
-names = []
-for player in players:
-    if player['team'] == team and player['status'] == status:
-        names.append(player['name'])
-names.sort()
-for name in names:
-    print(name)
+cost = 0
+while True:
+    good = input('Hansı ƏS-ni almaq istəyirsiniz (end — dayandırmaq)?')
+    if good == 'end':
+        break
+    qty = int(input('Nüsxələrin sayını daxil edin:'))
+    cost += goods[good] * qty
+print('Ödəmək:', cost)
 
 
 
 
 
-
-
-
-
-data = [
-       {'id': 10, 'user': 'Bob'},
-       {'id': 11, 'user': 'Mark'},
-       {'id': 12, 'user': 'Antony'},
-       {'id': 10, 'user': 'Rob'},
-       {'id': 11, 'user': 'Farid'},
-       {'id': 11, 'user': 'Adil'},
-       {'id': 10, 'user': 'Mark'},
-       {'id': 12, 'user': 'Emil'}
-]
+extensions = {'Qrafik fayllar': ['png', 'gif', 'svg', 'jpg', 'jpeg'],
+              'Sənədlər': ['docx', 'pdf', 'odt', 'rtf', 'txt'],
+              'Audio faylları': ['wav', 'mp3', 'ogg', 'wma']}
  
-new_data = {}
-for user in data:
-    if user['id'] in new_data:
-        new_data[user['id']].append(user['user'])
+fname = input('Faylın adını daxil edin. Onun uzantısını göstərin').split('.')
+if len(fname) < 2:
+    print('Faylın uzantısı göstərilməyib.')
+else:
+    found = False
+    for item in extensions:
+        if fname[-1] in extensions[item]:
+            found = True
+            ftype = item
+    if found:
+        print(f"Fayl '{ftype}' kateqoriyasına aiddir.")
     else:
-        new_data[user['id']] = [user['user']]
- 
-user = input('Hansı istifadəçini əsas təyin edirik (1 — birinci, 2 — sonuncu)?')
-if user == '1':
-    index = 0
-else:
-    index = -1
- 
-for item in new_data:
-    new_data[item] = new_data[item][index]
- 
-user_id = int(input('ID-ni daxil edin:'))
-print(f'Bu ID üçün əsas istifadəçi: {new_data[user_id]}')
+        print('Faylın tipi müəyyən edilməyib.')
