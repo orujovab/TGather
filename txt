@@ -1,83 +1,82 @@
-user = input('İstifadəçini daxil edin: ')
-filename = input('Faylın adını daxil edin: ')
-print(f'C:/{user}/docs/folder/{filename}.txt')
-
-
-
-a = input('İfadəni daxil edin: ')
-print(a[0])
-print(a[-1])
-print(a[0:4])
-print(a[4:])
-print(a[0::2])
-print(a[1::2])
-print(a[::-1])
+exceptions = []
+while input('Ünvanı istisnalara əlavə etmək istəyirsiniz (1 — bəli, 0 — xeyr)?') != '0':
+    address = input('Ünvanı daxil edin:')
+    if address in exceptions:
+        print('Ünvan artıq siyahıya daxil edilib')
+    else:
+        exceptions.append(address)
+print(f'Siyahıdakı istisnaların sayı: {len(exceptions)}')
 
 
 
 
-a = input('Sözü daxil edin: ')
-b = int(input('Əvəz etmək üçün simvolun nörəsi: '))
-c = input('Nə ilə əvəz edilməlidir: ')
-print(a.replace(a[b-1],c))
+tasks = input('Variant nömrələrini boşluqla ayıraraq bir sətirdə daxil edin:').split()
+tasks = list(map(int, tasks))
+for i in range(len(tasks)):
+    if tasks[i] > 99:
+        tasks[i] = tasks[i] % 100
+print(tasks)
 
 
 
 
 
-words = input('Bir neçə sözdən ibarət ifadəni daxil edin:')
-hashtags = "#"
-for i in words:
-      if i== ' ':
-          hashtags += ' #'
-      else:
-          hashtags += i
-print(hashtags)
-
-
-
-
-
-
-string = input("İngilis dilində ifadə və ya söz yazın:")
-vowels = "aeiou"
-vowel = 0
-for i in string.lower():
-  if i in vowels:
-    vowel = vowel + 1
-print(f"Sətirdəki saitlərin sayı: {vowel}")
-
-
-
-
-
-
-
-
-
-
-string = input('Mətni daxil edin:')
-vowels = 'aeiou'
-for vowel in vowels:
-    num = string.count(vowel)
-    print(f"Hərflərin sayı '{vowel}': {num}")
-    
-    
-    
-    
-    
-task = input('Hərflərin ardıcıllığını daxil edin:').lower()
-phrase = input(f'Sözləri "{task}" hərfləri ilə başlayan ifadəni daxil edin.').lower()
-done = True
-for letter in task:
-    if phrase[0] != letter:
-        done = False
+while True:
+    grats_template = input('Təbrik şablonunu daxil edin')
+    if '{name}' in grats_template:
         break
-    phrase = phrase[phrase.find(' ')+1:]
-if done == True:
-    print('Tapşırıq yerinə yetirildi!')
+    print('Xəta: {name} konstruksiyası yoxdur.')
+ 
+names_list = input('Adların siyahısını boşluqla ayıraraq bir sətirdə daxil edin:') 
+names_list = names_list.split()
+ 
+for name in names_list:
+    print(grats_template.replace('{name}', name))
+    
+    
+    
+    
+ models = ['Xiaomi Redmi Note 8 Pro', 'Xiaomi Redmi Note 8T',
+           'Apple iPhone Xr', 'Apple iPhone SE', 'OnePlus 8 Pro',
+           'Samsung Galaxy A71', 'Xiaomi Poco X3 NFC',
+           'Xiaomi Redmi 9', 'Xiaomi Redmi 9A', 'Apple iPhone 11',
+           'Apple iPhone 11 Pro', 'Samsung Galaxy S10',
+           'HUAWEI P40', 'HUAWEI P40 Pro', 'Samsung Galaxy A51',
+           'Xiaomi Mi 10', 'Xiaomi Redmi Note', 'ASUS Rog Phone 3',
+           'Apple iPhone 11 Pro Max', 'Samsung Galaxy A10']
+ 
+model = input('Sizi hansı istehsalçının modeli maraqlandırır?').lower()
+suggest = []
+for item in models:
+    if model in item.lower().split():
+        suggest.append(item)
+if len(suggest) == 0:
+    print('Bu istehsalçının telefonları tapılmadı.')
 else:
-    print('Tapşırıq yerinə yetirilə bilinmədi.')    
-    
-    
-    
+    print('Bu modelləri nəzərdən keçirməyi tövsiyə edirik:')
+    for item in suggest:
+        print(item)
+        
+        
+        
+        
+        
+        
+        
+        
+        
+numb = int(input('Siyahıdakı elementlərin sayını daxil edin:'))
+lst = list()
+summ = 0
+even, odd = 0, 0
+for i in range(numb):
+    lst.append(int(input('Ədədi daxil edin:')))
+    summ += lst[i]
+    if lst[i]%2 == 0:
+        even += 1
+    else:
+        odd += 1
+if summ%2 == 0:
+    print('Siyahıdakı tək elementlərin sayı:', odd)
+else:
+    print('Siyahıdakı cüt elementlərin sayı:', even)
